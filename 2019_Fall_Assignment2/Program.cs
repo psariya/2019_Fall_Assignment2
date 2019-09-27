@@ -21,9 +21,9 @@ namespace _2019_Fall_Assignment2
             //int[] A = { 5, 7, 3, 9, 4, 9, 8, 3, 1 };
             //Debug.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
 
-            string keyboard = "abcdefghijklmnopqrstuvwxyz";
-            string word = "cba";
-            Debug.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
+            //string keyboard = "abcdefghijklmnopqrstuvwxyz";
+            //string word = "cba";
+            //Debug.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
 
             //int[,] image = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 0, 0 } };
             //int[,] flipAndInvertedImage = FlipAndInvertImage(image);
@@ -31,9 +31,9 @@ namespace _2019_Fall_Assignment2
             //Display2DArray(flipAndInvertedImage);
             //Debug.Write("\n");
 
-            //int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
-            //int minMeetingRooms = MinMeetingRooms(intervals);
-            //Debug.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
+            int[,] intervals = { { 0, 30 }, { 15, 20 }, { 5, 10 }};
+            int minMeetingRooms = MinMeetingRooms(intervals);
+            Debug.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
 
             //int[] arr = { -4, -1, 0, 3, 10 };
             //int[] sortedSquares = SortedSquares(arr);
@@ -123,8 +123,6 @@ namespace _2019_Fall_Assignment2
                 {
                     index = index + Math.Abs(prevIndex - keyboard.IndexOf(c));
                     prevIndex = keyboard.IndexOf(c);
-                    Debug.WriteLine("c " + c);
-                    Debug.WriteLine("index " + index);
                 }
                 return index;
             }
@@ -154,11 +152,40 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                //Sort the 2D array
+                for (int i = 0; i < intervals.GetLength(0); i++)
+                {
+                    //Debug.WriteLine("loop 1 " + i);
+                    for (int j = intervals.GetLength(1) - 1; j > 0; j--)
+                    {
+                        //Debug.WriteLine("loop 2 " + j);
+                        for (int k = 0; k < j; k++)
+                        {
+                            //Debug.WriteLine("loop 3 " + k);
+                            if (intervals[i, k] > intervals[i, k + 1])
+                            {
+                                //Debug.WriteLine("if statement ");
+                                int myTemp = intervals[i, k];
+                                intervals[i, k] = intervals[i, k + 1];
+                                intervals[i, k + 1] = myTemp;
+                            }
+                        }
+                    }
+                }
+                //Print the 2D array
+                //Debug.Write("sorted array ");
+                //for (int x = 0; x < intervals.GetLength(0); x++)
+                //{
+                //    for (int y = 0; y < intervals.GetLength(1); y++)
+                //    {
+                //        Debug.Write(intervals[x, y] + "\t");
+                //    }
+                //}
+
             }
-            catch
+            catch (Exception ex)
             {
-                Debug.WriteLine("Exception occured while computing MinMeetingRooms()");
+                Debug.WriteLine("Exception occured while computing MinMeetingRooms()" + ex.ToString());
             }
 
             return 0;
