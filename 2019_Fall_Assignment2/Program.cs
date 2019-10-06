@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace _2019_Fall_Assignment2
@@ -7,7 +8,7 @@ namespace _2019_Fall_Assignment2
     {
         public static void Main(string[] args)
         {
-            int target = 5;
+            int target = 3;
             int[] nums = { 1, 3, 5, 6 };
             Debug.WriteLine("Position to insert {0} is = {1}\n", target, SearchInsert(nums, target));
 
@@ -18,14 +19,14 @@ namespace _2019_Fall_Assignment2
             DisplayArray(intersect);
             Debug.WriteLine("\n");
 
-            int[] A = { 5, 7, 3, 9, 4, 9, 8, 3, 1 };
+            int[] A = { 5, 7, 7, 5, 2 };//{ 9, 9, 8, 8 };//
             Debug.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
 
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
             string word = "cba";
             Debug.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
 
-            int[,] image = { { 1, 1, 0 }, { 1, 0, 1 }, { 0, 0, 0 } };
+            int[,] image = { { 1, 1, 0, 0 }, { 1, 0, 1, 0 }, { 0, 1, 0, 1 } };
             int[,] flipAndInvertedImage = FlipAndInvertImage(image);
             Debug.WriteLine("The resulting flipped and inverted image is:\n");
             Display2DArray(flipAndInvertedImage);
@@ -41,7 +42,7 @@ namespace _2019_Fall_Assignment2
             DisplayArray(sortedSquares);
             Debug.Write("\n");
 
-            string s = "abca";
+            string s = "abraarba";
             if (ValidPalindrome(s))
             {
                 Debug.WriteLine("The given string \"{0}\" can be made PALINDROME", s, "");
@@ -76,11 +77,34 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int first = 0;
+                int last = nums.Length;
+                int index = 0;
+
+                index = Array.IndexOf(nums, target);
+                //If target value is present in the array, then return it's index and exit the method
+                if (index >= 0)
+                {
+                    return index;
+                }
+                //if target value is not present in the array, find its position to insert the value
+                else if (index < 0)
+                {
+                    //binary search to find the position of the target value
+                    while (((last - first) / 2) > 0) //loop until we have exhausted the array
+                    {
+                        int mid = first + (last - first) / 2; //calculate the mid value. 
+                        if (nums[mid] < target)
+                            first = mid + 1;
+                        else
+                            last = mid;
+                    }
+                    return nums[first] >= target ? first : last;
+                }
             }
-            catch
+            catch (Exception e)
             {
-                Debug.WriteLine("Exception occured while computing SearchInsert()");
+                Debug.WriteLine("Exception occured while computing SearchInsert()" + e);
             }
 
             return 0;
@@ -90,7 +114,35 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                List<int> result = new List<int>();
+                Dictionary<int, int> myDict = new Dictionary<int, int>();
+                foreach (int value in nums1)
+                {
+                    try
+                    {
+                        myDict.Add(value, 1);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e);
+                        myDict[value]++;
+                    }
+                }
+
+                //foreach(KeyValuePair<int, int> ckpair in myDict)
+                //{
+                //    Debug.WriteLine("key {0} and value {1} ", ckpair.Key, ckpair.Value);
+                //}
+                foreach (int value in nums2)
+                {
+                    if (myDict.ContainsKey(value) && myDict[value] > 0)
+                    {
+                        myDict[value]--;
+                        result.Add(value);
+                    }
+                }
+
+                return result.ToArray();
             }
             catch
             {
@@ -104,14 +156,30 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                Array.Sort(A);
+                Array.Reverse(A);
+                int length = A.Length;
+                int i;
+
+                for (i = 0; i < length; i++)
+                {
+                    if (A[i] == A[i + 1])
+                    {
+                        i += 1;
+
+                    }
+                    else if (A[i] != A[i + 1])
+                    { return A[i]; }
+                    else
+                    { return -1; }
+                }
             }
             catch
             {
                 Debug.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
 
-            return 0;
+            return -1;
         }
 
         public static int CalculateTime(string keyboard, string word)
@@ -122,11 +190,11 @@ namespace _2019_Fall_Assignment2
                 int prevIndex = 0;
                 foreach (char c in word) //for each character in the word
                 {
-                    // calculate the distance between the prev and current index, and add it to the running total.
+                    // calculate the distance between the prev and current index, and add it to the running total called time.
                     time += Math.Abs(prevIndex - keyboard.IndexOf(c)); 
-                    prevIndex = keyboard.IndexOf(c);
+                    prevIndex = keyboard.IndexOf(c); //save the prev index value
                 }
-                return time;
+                return time; //return the time taken to traverse the keyboard
             }
             catch
             {
@@ -140,7 +208,39 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int rows = A.GetLength(0);
+                int cols = A.GetLength(1);
+                //swap the values of integer in row of the 2D array
+                for (int i = 0; i <= rows - 1; i++)
+                {
+                    int j = 0;
+                    int k = cols - 1;
+                    while (j < k)
+                    {
+                        int temp = A[i, j];
+                        A[i, j] = A[i, k];
+                        A[i, k] = temp;
+                        j++;
+                        k--;
+                    }
+                }
+                //repalce 1s with 0s in the entire 2D array
+                for (int i = 0; i <= rows - 1; i++)
+                {
+                    for (int j = 0; j <= cols - 1; j++)
+                    {
+                        if (A[i, j] == 0)
+                        {
+                            A[i, j] = 1;
+                        }
+                        else if (A[i, j] == 1)
+                        {
+                            A[i, j] = 0;
+                        }
+                    }
+                }
+
+                return A;
             }
             catch
             {
@@ -210,7 +310,14 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                // Write your code here
+                int length = A.Length;
+                int i;
+                for (i = 0; i < length; i++) //square all the values in the array
+                {
+                    A[i] = A[i] * A[i];
+                }
+                Array.Sort(A); //sort the array
+                return A; //return the sorted array
             }
             catch
             {
@@ -228,8 +335,7 @@ namespace _2019_Fall_Assignment2
                 {
                     if (IsPalindrome(s.Remove(c, 1)))
                     {
-                        // If so, return the index
-                        //Debug.WriteLine(s);
+                        // If so, return true. that is, it is a palindrome (or modified palindrome)
                         return true;
                     }
                 }
@@ -246,17 +352,17 @@ namespace _2019_Fall_Assignment2
         {
             int min = 0;
             int max = str.Length - 1;
-            while (true)
+            while (true) //loop until it's false
             {
-                if (min > max)
+                if (min > max) //if we have reached the middle (or beyond middle) of the string, its a palindrome, and return true.
                 {
                     return true;
                 }
-                char a = str[min];
-                char b = str[max];
-                if (a != b)
+                char a = str[min]; //traversing forward, left to right in the string
+                char b = str[max]; //traversing backwards, right to left, in the string
+                if (a != b) // the exact character from either side should have the same value to qualify as palindrome
                 {
-                    return false;
+                    return false; //if the values don't match, it's not a palindrome.
                 }
                 min++;
                 max--;
