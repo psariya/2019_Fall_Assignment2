@@ -10,46 +10,46 @@ namespace _2019_Fall_Assignment2
         {
             int target = 3;
             int[] nums = { 1, 3, 5, 6 };
-            Debug.WriteLine("Position to insert {0} is = {1}\n", target, SearchInsert(nums, target));
+            Console.WriteLine("Position to insert {0} is = {1}\n", target, SearchInsert(nums, target));
 
             int[] nums1 = { 1, 2, 2, 1 };
             int[] nums2 = { 2, 2 };
             int[] intersect = Intersect(nums1, nums2);
-            Debug.WriteLine("Intersection of two arrays is: ");
+            Console.WriteLine("Intersection of two arrays is: ");
             DisplayArray(intersect);
-            Debug.WriteLine("\n");
+            Console.WriteLine("\n");
 
             int[] A = { 5, 7, 7, 5, 2 };//{ 9, 9, 8, 8 };//
-            Debug.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
+            Console.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
 
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
             string word = "cba";
-            Debug.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
+            Console.WriteLine("Time taken to type with one finger = {0}\n", CalculateTime(keyboard, word));
 
             int[,] image = { { 1, 1, 0, 0 }, { 1, 0, 1, 0 }, { 0, 1, 0, 1 } };
             int[,] flipAndInvertedImage = FlipAndInvertImage(image);
-            Debug.WriteLine("The resulting flipped and inverted image is:\n");
+            Console.WriteLine("The resulting flipped and inverted image is:\n");
             Display2DArray(flipAndInvertedImage);
-            Debug.Write("\n");
+            Console.Write("\n");
 
             int[,] intervals = { { 0, 30 }, { 5, 10 }, { 15, 20 } };
             int minMeetingRooms = MinMeetingRooms(intervals);
-            Debug.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
+            Console.WriteLine("Minimum meeting rooms needed = {0}\n", minMeetingRooms);
 
             int[] arr = { -4, -1, 0, 3, 10 };
             int[] sortedSquares = SortedSquares(arr);
-            Debug.WriteLine("Squares of the array in sorted order is:");
+            Console.WriteLine("Squares of the array in sorted order is:");
             DisplayArray(sortedSquares);
-            Debug.Write("\n");
+            Console.Write("\n");
 
             string s = "abca";
             if (ValidPalindrome(s))
             {
-                Debug.WriteLine("The given string \"{0}\" can be made PALINDROME", s, "");
+                Console.WriteLine("The given string \"{0}\" can be made PALINDROME", s, "");
             }
             else
             {
-                Debug.WriteLine("The given string \"{0}\" CANNOT be made PALINDROME", s, "");
+                Console.WriteLine("The given string \"{0}\" CANNOT be made PALINDROME", s, "");
             }
         }
 
@@ -57,7 +57,7 @@ namespace _2019_Fall_Assignment2
         {
             foreach (int n in a)
             {
-                Debug.Write(n + " ");
+                Console.Write(n + " ");
             }
         }
 
@@ -67,9 +67,9 @@ namespace _2019_Fall_Assignment2
             {
                 for (int j = 0; j < a.GetLength(1); j++)
                 {
-                    Debug.Write(a[i, j] + "\t");
+                    Console.Write(a[i, j] + "\t");
                 }
-                Debug.Write("\n");
+                Console.Write("\n");
             }
         }
 
@@ -104,7 +104,7 @@ namespace _2019_Fall_Assignment2
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Exception occured while computing SearchInsert()" + e);
+                Console.WriteLine("Exception occured while computing SearchInsert()" + e);
             }
 
             return 0;
@@ -125,7 +125,7 @@ namespace _2019_Fall_Assignment2
                     }
                     catch (Exception e)
                     {
-                        Debug.WriteLine(e);
+                        Console.WriteLine(e);
                         myDict[value]++;
                     }
                 }
@@ -143,7 +143,7 @@ namespace _2019_Fall_Assignment2
             }
             catch
             {
-                Debug.WriteLine("Exception occured while computing Intersect()");
+                Console.WriteLine("Exception occured while computing Intersect()");
             }
 
             return new int[] { };
@@ -179,7 +179,7 @@ namespace _2019_Fall_Assignment2
             }
             catch
             {
-                Debug.WriteLine("Exception occured while computing LargestUniqueNumber()");
+                Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
 
             return -1;
@@ -201,7 +201,7 @@ namespace _2019_Fall_Assignment2
             }
             catch
             {
-                Debug.WriteLine("Exception occured while computing CalculateTime()");
+                Console.WriteLine("Exception occured while computing CalculateTime()");
             }
 
             return 0;
@@ -247,7 +247,7 @@ namespace _2019_Fall_Assignment2
             }
             catch
             {
-                Debug.WriteLine("Exception occured while computing FlipAndInvertImage()");
+                Console.WriteLine("Exception occured while computing FlipAndInvertImage()");
             }
 
             return new int[,] { };
@@ -303,7 +303,7 @@ namespace _2019_Fall_Assignment2
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Exception occured while computing MinMeetingRooms()" + ex.ToString());
+                Console.WriteLine("Exception occured while computing MinMeetingRooms()" + ex.ToString());
             }
 
             return 0;
@@ -324,7 +324,7 @@ namespace _2019_Fall_Assignment2
             }
             catch
             {
-                Debug.WriteLine("Exception occured while computing SortedSquares()");
+                Console.WriteLine("Exception occured while computing SortedSquares()");
             }
 
             return new int[] { };
@@ -345,7 +345,7 @@ namespace _2019_Fall_Assignment2
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Exception occured while computing ValidPalindrome(): " + e);
+                Console.WriteLine("Exception occured while computing ValidPalindrome(): " + e);
             }
 
             return false;
