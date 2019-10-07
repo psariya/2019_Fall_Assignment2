@@ -42,7 +42,7 @@ namespace _2019_Fall_Assignment2
             DisplayArray(sortedSquares);
             Debug.Write("\n");
 
-            string s = "abraarba";
+            string s = "abca";
             if (ValidPalindrome(s))
             {
                 Debug.WriteLine("The given string \"{0}\" can be made PALINDROME", s, "");
@@ -163,15 +163,21 @@ namespace _2019_Fall_Assignment2
 
                 for (i = 0; i < length; i++)
                 {
-                    if (A[i] == A[i + 1])
+                    if (Array.IndexOf(A, A[i]) < length - 1)
                     {
-                        i += 1;
-
+                        if (A[i] == A[i + 1])
+                        {
+                            i = i + 1;
+                        }
+                        else if (A[i] != A[i + 1])
+                        {
+                            return A[i];
+                        }
                     }
-                    else if (A[i] != A[i + 1])
-                    { return A[i]; }
                     else
-                    { return -1; }
+                    {
+                        return A[i];
+                    }
                 }
             }
             catch
