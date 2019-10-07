@@ -194,7 +194,7 @@ namespace _2019_Fall_Assignment2
                 foreach (char c in word) //for each character in the word
                 {
                     // calculate the distance between the prev and current index, and add it to the running total called time.
-                    time += Math.Abs(prevIndex - keyboard.IndexOf(c)); 
+                    time += Math.Abs(prevIndex - keyboard.IndexOf(c));
                     prevIndex = keyboard.IndexOf(c); //save the prev index value
                 }
                 return time; //return the time taken to traverse the keyboard
