@@ -19,7 +19,7 @@ namespace _2019_Fall_Assignment2
             DisplayArray(intersect);
             Console.WriteLine("\n");
 
-            int[] A = { 5, 7, 7, 5, 2 };//{ 9, 9, 8, 8 };//
+            int[] A = { 5, 7, 7, 5, 3 };//{ 9, 9, 8, 8 };//
             Console.WriteLine("Largest integer occuring once = {0}\n", LargestUniqueNumber(A));
 
             string keyboard = "abcdefghijklmnopqrstuvwxyz";
