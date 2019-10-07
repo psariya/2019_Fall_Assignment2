@@ -114,14 +114,14 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                List<int> result = new List<int>();
-                Dictionary<int, int> myDict = new Dictionary<int, int>();
+                List<int> result = new List<int>();  //Creating a new list to hold the result of intersection
+                Dictionary<int, int> myDict = new Dictionary<int, int>();  // Creating an integer type data dictionary
                 //convert array to dictionary
-                foreach (int value in nums1)
+                foreach (int value in nums1)  //Iterating through each value of the first array
                 {
                     try
                     {
-                        myDict.Add(value, 1);
+                        myDict.Add(value, 1);  // Here we add the elements into the dictionary variable created
                     }
                     catch (Exception e)
                     {
@@ -130,16 +130,18 @@ namespace _2019_Fall_Assignment2
                     }
                 }
                 //for each interger in num2, check if that value is present in myDict Dictionary.
-                foreach (int value in nums2)
+                foreach (int value in nums2)  //Iterating through each element of the second array
                 {
+                    // Simultaneously checking if thekey element from the first array is 
+                    // present in the second array and if the data dictionary contains an element
                     if (myDict.ContainsKey(value) && myDict[value] > 0)
                     {
                         myDict[value]--;
-                        result.Add(value);
+                        result.Add(value);  //If yes add the element in the result list        
                     }
                 }
 
-                return result.ToArray();
+                return result.ToArray();  // Convert the list to array and return it to the method
             }
             catch
             {
@@ -153,25 +155,28 @@ namespace _2019_Fall_Assignment2
         {
             try
             {
-                Array.Sort(A);
-                Array.Reverse(A);
+                Array.Sort(A);  // First we sort the array in increasing order
+                Array.Reverse(A); // Here we reverse the sorted array to get the array elements in Decending order
                 int length = A.Length;
                 int i;
 
-                for (i = 0; i < length; i++)
+                for (i = 0; i < length; i++)  // We run a loop to check if our array has any repeated adjecent elements
                 {
-                    if (Array.IndexOf(A, A[i]) < length - 1)
+                    if (Array.IndexOf(A, A[i]) < length - 1) 
                     {
-                        if (A[i] == A[i + 1])
+                        if (A[i] == A[i + 1])  // If found we continue to traverse the loop
                         {
                             i = i + 1;
                         }
-                        else if (A[i] != A[i + 1])
+                        // If we don't find the consecutive elements similar we return the current 
+                        //element as the highest value, since our array is already sorted in descending 
+                        //order the value returned here will be the unique and largest element in the array
+                        else if (A[i] != A[i + 1])  
                         {
                             return A[i];
                         }
                     }
-                    else
+                    else //// Here we return our last element as it will be the largest unique element
                     {
                         return A[i];
                     }
@@ -182,7 +187,7 @@ namespace _2019_Fall_Assignment2
                 Console.WriteLine("Exception occured while computing LargestUniqueNumber()");
             }
 
-            return -1;
+            return -1; //// If there isn't any unique element then we return -1
         }
 
         public static int CalculateTime(string keyboard, string word)
