@@ -116,6 +116,7 @@ namespace _2019_Fall_Assignment2
             {
                 List<int> result = new List<int>();
                 Dictionary<int, int> myDict = new Dictionary<int, int>();
+                //convert array to dictionary
                 foreach (int value in nums1)
                 {
                     try
@@ -128,11 +129,7 @@ namespace _2019_Fall_Assignment2
                         myDict[value]++;
                     }
                 }
-
-                //foreach(KeyValuePair<int, int> ckpair in myDict)
-                //{
-                //    Debug.WriteLine("key {0} and value {1} ", ckpair.Key, ckpair.Value);
-                //}
+                //for each interger in num2, check if that value is present in myDict Dictionary.
                 foreach (int value in nums2)
                 {
                     if (myDict.ContainsKey(value) && myDict[value] > 0)
